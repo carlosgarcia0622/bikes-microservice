@@ -1,24 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/nest-microservices-boiler-plate/src",
+  "sourceRoot": "apps/bikes-microservices/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/nest-microservices-boiler-plate/tsconfig.app.json"
+    "tsConfigPath": "apps/bikes-microservices/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/nest-microservices-boiler-plate",
+  "root": "apps/bikes-microservices",
   "projects": {
-    "nest-microservices-boiler-plate": {
-      "type": "application",
-      "root": "apps/nest-microservices-boiler-plate",
-      "entryFile": "main",
-      "sourceRoot": "apps/nest-microservices-boiler-plate/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/nest-microservices-boiler-plate/tsconfig.app.json"
-      }
-    },
     "api-gateway": {
       "type": "application",
       "root": "apps/api-gateway",
