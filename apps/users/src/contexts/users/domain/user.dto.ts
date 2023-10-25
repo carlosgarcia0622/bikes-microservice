@@ -1,4 +1,6 @@
 export class UserDto {
-    readonly name: string;
-    readonly documentNumber: string;
+    readonly id?: number;
+    readonly username: string;
+    readonly password: string;
+    readonly role : string;
 }

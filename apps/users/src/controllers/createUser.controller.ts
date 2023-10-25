@@ -1,21 +1,21 @@
-import { Controller } from '@nestjs/common';
-import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
+import { Controller, Logger } from '@nestjs/common';
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
-import { CreateUserCommand } from '../contexts/users/application/commands/impl/createUser.command';
+import { CreateUserHandler } from '../contexts/users/application/commands/handlers/createUser.handler';
 
 
 @Controller()
   export class CreateUserController {
   constructor(
-    private readonly commandBus: CommandBus,
-    private readonly eventBus: EventBus,
-    private readonly queryBus: QueryBus,
+    private readonly createUserService: CreateUserHandler
   ) {}
+
+  private readonly logger = new Logger(CreateUserController.name);
   
   //Broker-Based controller
   @EventPattern('createUser')
   async createUser(@Payload() data: any) {
-    this.commandBus.execute(new CreateUserCommand(data.name, data.documentNumber));
+    this.logger.log(`[USERS]: createUser :: INIT`);
+    await this.createUserService.execute(data);
   }
 
   //Point-To-Point controller
