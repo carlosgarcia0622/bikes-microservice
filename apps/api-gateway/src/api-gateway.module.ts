@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { LoginController } from './controllers/auth/login.controller';
+import { CreateBikeController } from './controllers/bikes/create/CreateBike.controller';
 import { CreateUserController } from './controllers/users/create/createUser.controller';
 
 @Module({
@@ -29,7 +30,8 @@ import { CreateUserController } from './controllers/users/create/createUser.cont
   ],
   controllers: [
     LoginController, 
-    CreateUserController
+    CreateUserController,
+    CreateBikeController
   ],
   providers: [],
 })

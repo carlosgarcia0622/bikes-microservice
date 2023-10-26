@@ -10,6 +10,7 @@ async function bootstrap() {
   .setDescription('Eafit bycicles system gateway')
   .setVersion('1.0')
   .setBasePath('v1.0')
+  .addBearerAuth()
   .build();
   const document = SwaggerModule.createDocument(app, documentOptions);
   SwaggerModule.setup('swagger', app, document);
