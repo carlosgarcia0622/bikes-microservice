@@ -1,26 +1,19 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { LoginController } from './controllers/auth/login.controller';
 import { CreateUserController } from './controllers/users/create/createUser.controller';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: {expiresIn: '1h'},
+      global: true,
+  }),
     ClientsModule.register([
-      {
-        name: 'USERS_TCP_CLIENT',
-        transport: Transport.TCP,
-        options: {
-          host: 'localhost',
-          port: 3001
-        }
-      },
-      {
-        name: 'USERS_MQTT_CLIENT',
-        transport: Transport.MQTT,
-        options: {
-          host: 'mqtt://localhost',
-          port: 1883,
-        }
-      },
       {
         name: 'USERS_RMQ_CLIENT',
         transport: Transport.RMQ,
@@ -34,7 +27,10 @@ import { CreateUserController } from './controllers/users/create/createUser.cont
       }
     ])
   ],
-  controllers: [CreateUserController],
+  controllers: [
+    LoginController, 
+    CreateUserController
+  ],
   providers: [],
 })
 export class ApiGatewayModule {}
