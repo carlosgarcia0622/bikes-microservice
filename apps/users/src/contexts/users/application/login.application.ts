@@ -1,6 +1,6 @@
 import { compare } from 'bcrypt';
 import { Injectable, Logger } from '@nestjs/common';
-import { UsersRepository } from '../infraestructure/prisma/users.model.postgress';
+import { UsersRepository } from '../infraestructure/prisma/users.postgres.repository';
 import { User } from '@prisma/client';
 
 

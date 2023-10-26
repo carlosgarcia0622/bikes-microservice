@@ -6,11 +6,11 @@ export class CreateBikeRequest {
     @IsString()
     @IsNotEmpty()
     @ApiProperty({ type: 'string' })
-    branch: string;
+    brand: string;
   
     @IsString()
     @IsNotEmpty()
-    @ApiProperty({ type: 'string', enum: ['Admin', 'Cyclist'] })
+    @ApiProperty({ type: 'string' })
     type: string;
 
     @IsString()

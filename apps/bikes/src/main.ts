@@ -1,10 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { UsersModule } from './users.module';
+import { BikesModule } from './bikes.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(UsersModule);
-
+  const app = await NestFactory.create(BikesModule);
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
@@ -15,6 +14,6 @@ async function bootstrap() {
       },
     },
     });
-  await app.startAllMicroservices(); //Hybrid app, lisents tcp, and mqtt
+  await app.startAllMicroservices();
 }
 bootstrap();

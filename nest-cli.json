@@ -27,6 +27,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/users/tsconfig.app.json"
       }
+    },
+    "bikes": {
+      "type": "application",
+      "root": "apps/bikes",
+      "entryFile": "main",
+      "sourceRoot": "apps/bikes/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bikes/tsconfig.app.json"
+      }
     }
   }
 }

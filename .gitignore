@@ -1,7 +1,6 @@
 # compiled output
 /dist
 /node_modules
-/apps/frontbiketrack/node_modules
 # Logs
 logs
 *.log

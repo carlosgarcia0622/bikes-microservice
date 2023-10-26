@@ -1,6 +1,6 @@
 import { Controller, Logger } from '@nestjs/common';
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
-import { CreateUserHandler } from '../contexts/users/application/commands/handlers/createUser.handler';
+import { CreateUserService } from '../contexts/users/application/createUser.service';
 import { LoginApplication } from '../contexts/users/application/login.application';
 
 

@@ -1,8 +1,9 @@
-import { Body, Controller, Inject, Logger, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Inject, Logger, Post, Req, UseGuards } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from '../../auth/auth.admin.guard';
 import { AuthGuard } from '../../auth/auth.guard';
-import { CreateBikeRequest } from './createUser.request';
+import { CreateBikeRequest } from './createBike.request';
 
 
 @Controller('bikes')
@@ -15,10 +16,9 @@ export class CreateBikeController {
   private readonly logger = new Logger(CreateBikeController.name);
   
   @Post('')
-  @UseGuards(AuthGuard)
+  @UseGuards(AdminGuard)
   createBike(@Body() body: CreateBikeRequest) {
     this.logger.log(`[GATEWAY]: createBike`);
-    //return this.rabbitMQ.emit('createBike', body);
-    return true;
+    return this.rabbitMQ.emit('createBike', body);
   }
 }
