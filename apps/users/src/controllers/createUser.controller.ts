@@ -17,10 +17,4 @@ import { CreateUserHandler } from '../contexts/users/application/commands/handle
     this.logger.log(`[USERS]: createUser :: INIT`);
     await this.createUserService.execute(data);
   }
-
-  //Point-To-Point controller
-  @MessagePattern('testMessage')
-  getHelloTCP(name: string): string {
-     return `Hello !`;
- }
 }

@@ -11,4 +11,8 @@ export class UsersRepository implements IUsersRepository {
     async create(data: UserDto): Promise<User> {
         return this.prisma.user.create({data});
     }
+
+    async findByUserName(username: string): Promise<User> {
+        return this.prisma.user.findFirst({where: {username}});
+    }
 }

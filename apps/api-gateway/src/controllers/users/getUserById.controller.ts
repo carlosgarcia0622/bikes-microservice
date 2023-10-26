@@ -7,7 +7,6 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('Users')
 export class CreateUserController {
   constructor(
-    @Inject('USERS_MQTT_CLIENT') private MQTT: ClientProxy,
     @Inject('USERS_RMQ_CLIENT') private rabbitMQ: ClientProxy
     ) {}
   private readonly logger = new Logger(CreateUserController.name);
