@@ -7,6 +7,7 @@ import { CreateBikeController } from './controllers/bikes/create/CreateBike.cont
 import { GetAllBikesController } from './controllers/bikes/getAll/GetAllBikes.controller';
 import { GetBikeByIdController } from './controllers/bikes/getById/GetBikeById.controller';
 import { UpdateBikeControllerController } from './controllers/bikes/update/UpdateBike.controller';
+import { EventsController } from './controllers/events/events.controller';
 import { RentalController } from './controllers/rental/rental.controller';
 import { CreateUserController } from './controllers/users/create/createUser.controller';
 
@@ -51,6 +52,17 @@ import { CreateUserController } from './controllers/users/create/createUser.cont
             durable: true
           },
         },
+      },
+      {
+        name: 'EVENTS_RMQ_CLIENT',
+        transport: Transport.RMQ,
+        options: {
+          urls: [process.env.RABBITMQ_URL],
+          queue: 'events',
+          queueOptions: {
+            durable: true
+          },
+        },
       }
     ])
   ],
@@ -62,6 +74,7 @@ import { CreateUserController } from './controllers/users/create/createUser.cont
     GetAllBikesController,
     UpdateBikeControllerController,
     RentalController,
+    EventsController
   ],
   providers: [],
 })
