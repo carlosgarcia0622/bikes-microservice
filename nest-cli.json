@@ -36,6 +36,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/bikes/tsconfig.app.json"
       }
+    },
+    "rental": {
+      "type": "application",
+      "root": "apps/rental",
+      "entryFile": "main",
+      "sourceRoot": "apps/rental/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/rental/tsconfig.app.json"
+      }
     }
   }
 }

@@ -12,19 +12,7 @@ import { LoginApplication } from './contexts/users/application/login.application
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    ClientsModule.register([
-      {
-        name: 'USERS_RMQ_CLIENT',
-        transport: Transport.RMQ,
-        options: {
-          urls: [process.env.RABBITMQ_URL],
-          queue: 'bikes',
-          queueOptions: {
-            durable: true
-          },
-        },
-      }
-    ])
+    ClientsModule.register([])
   ],
   controllers: [LoginController, CreateUserController],
   providers: [

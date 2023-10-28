@@ -11,7 +11,7 @@ import { CreateBikeRequest } from './createBike.request';
 @ApiBearerAuth()
 export class CreateBikeController {
   constructor(
-    @Inject('USERS_RMQ_CLIENT') private rabbitMQ: ClientProxy
+    @Inject('BIKES_RMQ_CLIENT') private rabbitMQ: ClientProxy
     ) {}
   private readonly logger = new Logger(CreateBikeController.name);
   

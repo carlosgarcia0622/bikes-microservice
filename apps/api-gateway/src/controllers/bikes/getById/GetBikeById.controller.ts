@@ -9,7 +9,7 @@ import { GetBikeByIdResponse } from './GetBikeById.response';
 @ApiBearerAuth()
 export class GetBikeByIdController {
   constructor(
-    @Inject('USERS_RMQ_CLIENT') private rabbitMQ: ClientProxy
+    @Inject('BIKES_RMQ_CLIENT') private rabbitMQ: ClientProxy
     ) {}
   private readonly logger = new Logger(GetBikeByIdController.name);
   

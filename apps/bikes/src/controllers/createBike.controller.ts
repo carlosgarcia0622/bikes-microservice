@@ -1,10 +1,11 @@
-import { Controller, Logger } from '@nestjs/common';
-import { EventPattern, Payload } from '@nestjs/microservices';
+import { Controller, Inject, Logger } from '@nestjs/common';
+import { ClientProxy, EventPattern, Payload } from '@nestjs/microservices';
 import { CreateBikeService } from '../contexts/bikes/application/createBike.service';
 
 @Controller()
   export class CreateBikeController {
   constructor(
+    @Inject('RENTAL_RMQ_CLIENT') private rabbitMQ: ClientProxy,
     private readonly createBikeService: CreateBikeService
   ) {}
 
@@ -13,6 +14,8 @@ import { CreateBikeService } from '../contexts/bikes/application/createBike.serv
   @EventPattern('createBike')
   async createBike(@Payload() data: any) {
     this.logger.log(`[Bikes]: createBike :: INIT`);
-    await this.createBikeService.execute(data);
+    const bike = await this.createBikeService.execute(data);
+    const a = this.rabbitMQ.connect;
+    await this.rabbitMQ.send('addBikeToCatalog', bike).toPromise();
   }
 }

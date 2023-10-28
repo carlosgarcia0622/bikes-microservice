@@ -7,6 +7,7 @@ import { CreateBikeController } from './controllers/bikes/create/CreateBike.cont
 import { GetAllBikesController } from './controllers/bikes/getAll/GetAllBikes.controller';
 import { GetBikeByIdController } from './controllers/bikes/getById/GetBikeById.controller';
 import { UpdateBikeControllerController } from './controllers/bikes/update/UpdateBike.controller';
+import { RentalController } from './controllers/rental/rental.controller';
 import { CreateUserController } from './controllers/users/create/createUser.controller';
 
 @Module({
@@ -14,7 +15,7 @@ import { CreateUserController } from './controllers/users/create/createUser.cont
     ConfigModule.forRoot(),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: {expiresIn: '1h'},
+      signOptions: {expiresIn: '6h'},
       global: true,
   }),
     ClientsModule.register([
@@ -22,8 +23,30 @@ import { CreateUserController } from './controllers/users/create/createUser.cont
         name: 'USERS_RMQ_CLIENT',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqps://eafit:eafit0123456@b-fb3f3df8-31d9-4a8d-a7fe-edeb2a8028bf.mq.us-east-1.amazonaws.com:5671'],
+          urls: [process.env.RABBITMQ_URL],
+          queue: 'users',
+          queueOptions: {
+            durable: true
+          },
+        },
+      },
+      {
+        name: 'BIKES_RMQ_CLIENT',
+        transport: Transport.RMQ,
+        options: {
+          urls: [process.env.RABBITMQ_URL],
           queue: 'bikes',
+          queueOptions: {
+            durable: true
+          },
+        },
+      },
+      {
+        name: 'RENTAL_RMQ_CLIENT',
+        transport: Transport.RMQ,
+        options: {
+          urls: [process.env.RABBITMQ_URL],
+          queue: 'rental',
           queueOptions: {
             durable: true
           },
@@ -37,7 +60,8 @@ import { CreateUserController } from './controllers/users/create/createUser.cont
     CreateBikeController,
     GetBikeByIdController,
     GetAllBikesController,
-    UpdateBikeControllerController
+    UpdateBikeControllerController,
+    RentalController,
   ],
   providers: [],
 })

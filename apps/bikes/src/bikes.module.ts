@@ -17,11 +17,11 @@ import { UpdateBikeService } from './contexts/bikes/application/updateBike.servi
     ConfigModule.forRoot(),
     ClientsModule.register([
       {
-        name: 'USERS_RMQ_CLIENT',
+        name: 'RENTAL_RMQ_CLIENT',
         transport: Transport.RMQ,
         options: {
           urls: [process.env.RABBITMQ_URL],
-          queue: 'bikes',
+          queue: 'rental',
           queueOptions: {
             durable: true
           },

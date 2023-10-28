@@ -46,6 +46,7 @@ model Rental {
   type  String
   color String
   status String
+  username String?
  }
 
 

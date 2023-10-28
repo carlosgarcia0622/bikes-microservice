@@ -11,12 +11,12 @@ import { UpdateResponse } from './UpdateBikes.response';
 @ApiBearerAuth()
 export class UpdateBikeControllerController {
   constructor(
-    @Inject('USERS_RMQ_CLIENT') private rabbitMQ: ClientProxy
+    @Inject('BIKES_RMQ_CLIENT') private rabbitMQ: ClientProxy
     ) {}
   private readonly logger = new Logger(UpdateBikeControllerController.name);
   
   @Put('/:id')
-  @UseGuards(AdminGuard)
+  //@UseGuards(AdminGuard)
   @ApiResponse({
     status: 404,
     description: 'Not Found'

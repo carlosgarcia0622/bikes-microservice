@@ -1,20 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { UsersModule } from './users.module';
+import { RentalModule } from './rental.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(UsersModule);
-
+  const app = await NestFactory.create(RentalModule);
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
       urls: [process.env.RABBITMQ_URL],
-      queue: 'users',
+      queue: 'rental',
       queueOptions: {
         durable: true
       },
     },
     });
-  await app.startAllMicroservices(); //Hybrid app, lisents tcp, and mqtt
+  await app.startAllMicroservices();
 }
 bootstrap();
