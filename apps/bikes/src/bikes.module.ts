@@ -4,9 +4,13 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { CreateBikeService } from './contexts/bikes/application/createBike.service';
 import { GetBikeByIdService } from './contexts/bikes/application/getBikeById.service';
 import { PrismaService } from './contexts/bikes/infraestructure/prisma.service';
-import { BikesRepository } from './contexts/bikes/infraestructure/users.postgres.repository';
+import { BikesRepository } from './contexts/bikes/infraestructure/bikes.postgres.repository';
 import { CreateBikeController } from './controllers/createBike.controller';
 import { GetBikeByIdController } from './controllers/getBikeById.controller';
+import { GetAllBikesService } from './contexts/bikes/application/getAllBikes.service';
+import { GetAllBikesController } from './controllers/getAllBikes.controller';
+import { UpdateBikeController } from './controllers/updateBike.controller';
+import { UpdateBikeService } from './contexts/bikes/application/updateBike.service';
 
 @Module({
   imports: [
@@ -25,12 +29,19 @@ import { GetBikeByIdController } from './controllers/getBikeById.controller';
       }
     ])
   ],
-  controllers: [CreateBikeController, GetBikeByIdController],
+  controllers: [
+    CreateBikeController, 
+    GetBikeByIdController, 
+    GetAllBikesController,
+    UpdateBikeController
+  ],
   providers: [
     CreateBikeService,
     GetBikeByIdService,
     PrismaService,
-    BikesRepository
+    BikesRepository,
+    GetAllBikesService,
+    UpdateBikeService
   ],
 })
 export class BikesModule {}

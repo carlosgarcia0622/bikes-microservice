@@ -1,7 +1,7 @@
 import { Param, Controller, Inject, Logger, Post, Req, UseGuards, Get, NotFoundException } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { ApiBearerAuth, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { GetBikeByIdBikeResponse } from './GetBikeById.response';
+import { GetBikeByIdResponse } from './GetBikeById.response';
 
 
 @Controller('bikes')
@@ -16,13 +16,13 @@ export class GetBikeByIdController {
   @Get('/:id')
   @ApiResponse({
     status: 404,
-    description: 'Unauthorized'
+    description: 'Not Found'
   })
   @ApiResponse({
     status: 200,
-    type: GetBikeByIdBikeResponse})
+    type: GetBikeByIdResponse})
   @ApiParam({name: 'id'})
-  async getBikeById(@Param('id') id: string) {
+  async getAll(@Param('id') id: string) {
     this.logger.log(`[GATEWAY]: getBikeById: ${id}`);
     const bike = await this.rabbitMQ.send('getBikeById', {id}).toPromise();
     if(!bike) throw new NotFoundException();

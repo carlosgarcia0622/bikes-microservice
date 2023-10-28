@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class GetBikeByIdBikeResponse {
+export class GetBikeByIdResponse {
   
     @ApiProperty({ type: 'string' })
     id: string;

@@ -4,7 +4,9 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { LoginController } from './controllers/auth/login.controller';
 import { CreateBikeController } from './controllers/bikes/create/CreateBike.controller';
+import { GetAllBikesController } from './controllers/bikes/getAll/GetAllBikes.controller';
 import { GetBikeByIdController } from './controllers/bikes/getById/GetBikeById.controller';
+import { UpdateBikeControllerController } from './controllers/bikes/update/UpdateBike.controller';
 import { CreateUserController } from './controllers/users/create/createUser.controller';
 
 @Module({
@@ -33,7 +35,9 @@ import { CreateUserController } from './controllers/users/create/createUser.cont
     LoginController, 
     CreateUserController,
     CreateBikeController,
-    GetBikeByIdController
+    GetBikeByIdController,
+    GetAllBikesController,
+    UpdateBikeControllerController
   ],
   providers: [],
 })

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "./prisma.service";
-import {Bicycle } from '@prisma/client';
+import { Bicycle } from '@prisma/client';
 import { IBikesRepository } from "../domain/bikes.repository.interface";
 import { BikeDto } from "../domain/bike.dto";
 
@@ -17,6 +17,13 @@ export class BikesRepository implements IBikesRepository {
     }
 
     async findAll(): Promise<Array<Bicycle>> {
-        return this.prisma.bicycle.findMany({});
+        return this.prisma.bicycle.findMany();
+    }
+
+    async update(data: BikeDto): Promise<Bicycle> {
+        return await this.prisma.bicycle.update({
+            where: { id: data.id },
+            data
+        });
     }
 }

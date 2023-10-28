@@ -4,15 +4,14 @@ import { BikeDto } from '../domain/bike.dto';
 import { BikesRepository } from '../infraestructure/bikes.postgres.repository';
 
 @Injectable()
-export class GetBikeByIdService{
+export class GetAllBikesService{
 
   constructor(
     private readonly bikesRepository: BikesRepository
   ) {}
-  private readonly logger = new Logger(GetBikeByIdService.name);
-  async execute(id: number): Promise<Bicycle> {
-    this.logger.log(`[${this.execute.name}] :: INIT :: id: ${id}`);
-    const bike = await this.bikesRepository.findById(id);
-    return bike;
+  private readonly logger = new Logger(GetAllBikesService.name);
+  async execute(): Promise<Array<Bicycle>> {
+    this.logger.log(`[${this.execute.name}] :: INIT :: id:`);
+    return await this.bikesRepository.findAll();
   }
 }

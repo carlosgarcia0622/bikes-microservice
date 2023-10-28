@@ -13,7 +13,7 @@ import { GetBikeByIdService } from '../contexts/bikes/application/getBikeById.se
 
   @EventPattern('getBikeById')
   async getBikeById(@Payload() data: any) {
-    this.logger.log(`[Bikes]: createBike :: INIT`);
+    this.logger.log(`[Bikes]: get bike by id :: INIT`);
     return await this.getBikeByIdService.execute(Number(data.id));
   }
 }
