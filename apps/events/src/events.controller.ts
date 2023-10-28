@@ -35,7 +35,6 @@ export class EventsController {
   @EventPattern('updateEvent')
   async updateEvent(@Payload() data: any) {
     this.logger.log(`[Events]: updateEvent :: INIT: data: ${JSON.stringify(data)}`);
-    return await this.eventsService.updateEvent({...data, id: Number(data.id)});
+    return await this.eventsService.updateEvent({...data, id: Number});
   }
-  
 }

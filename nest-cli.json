@@ -54,6 +54,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/events/tsconfig.app.json"
       }
+    },
+    "cordinates": {
+      "type": "application",
+      "root": "apps/cordinates",
+      "entryFile": "main",
+      "sourceRoot": "apps/cordinates/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/cordinates/tsconfig.app.json"
+      }
     }
   }
 }
